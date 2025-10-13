@@ -1,31 +1,37 @@
 # Snake Game
 
 ## Description
-A terminal-based implementation of the classic Snake game, written in C++.
+A terminal-based implementation of the classic Snake game, written in Python.
+
+## Setup and Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd snake-game
+    ```
+
+2.  **Create a virtual environment and install dependencies:**
+    This project uses `uv` for environment management.
+    ```bash
+    uv init
+    uv sync
+    ```
+
+## How to Run
+To start the game, run the following command from the project's root directory:
+```bash
+uv run python snake_game.py
+```
 
 ## How to Play
-- Use **Arrow Keys** or **W/A/S/D** keys to control the snake.
-- The goal is to eat the food (`F`) that appears on the screen.
-- Each piece of food eaten increases the snake's length and your score.
-- The game is over if the snake runs into the walls or into itself.
-- Complete a level by filling the entire board with the snake.
-
-## Build and Run Instructions
-This project can be compiled with a standard C++ compiler like g++.
-
-### Prerequisites
-- A C++ compiler that supports C++11 or later (e.g., g++, MinGW on Windows).
-
-### Compilation
-1. Open a terminal or command prompt.
-2. Navigate to the directory containing the `main.cpp` file.
-3. Run the following command to compile the code:
-   ```sh
-   g++ main.cpp -o snake.exe
-   ```
-
-### Running the Game
-1. After compilation, run the game by executing the compiled file:
-   ```sh
-   .\snake.exe
-   ```
+-   Use the **Arrow Keys** or **W/A/S/D** keys to move the snake.
+-   **W** or **Up Arrow**: Move Up
+-   **S** or **Down Arrow**: Move Down
+-   **A** or **Left Arrow**: Move Left
+-   **D** or **Right Arrow**: Move Right
+-   The goal is to eat the food (`@`) that appears on the screen.
+-   Each piece of food eaten increases your score by 10 points and makes the snake longer.
+-   The game ends if the snake runs into the wall or into itself.
+-   Press any key to play again after a game over.
+-   Press `Esc` to quit the game at any time.

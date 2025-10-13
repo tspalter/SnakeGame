@@ -5,6 +5,9 @@ We want to create a terminal-based version of the game "Snake".  The player is a
 
 ## Technology
 This application should have the following constraints:
-* Language: C++
+* Language: Python
 * SCM: Git
-* Must include README.md containing build and run instructions as well as details on how to play the game 
+* Must include README.md containing build and run instructions as well as details on how to play the game
+* Use `uv` for virtual environment management
+* Use `uv add` to add dependencies
+* If the project doesn't already exist, use `uv init` to initialize it
