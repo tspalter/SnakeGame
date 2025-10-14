@@ -25,8 +25,11 @@ namespace SnakeGame
             {
                 Console.Title = "Snake Game";
                 Console.CursorVisible = false;
-                Console.SetWindowSize(_width + 2, _height + 4);
-                Console.SetBufferSize(_width + 2, _height + 4);
+                if (OperatingSystem.IsWindows())
+                {
+                    Console.SetWindowSize(_width + 2, _height + 4);
+                    Console.SetBufferSize(_width + 2, _height + 4);
+                }
             }
             catch (IOException)
             {
@@ -55,22 +58,36 @@ namespace SnakeGame
             _level = 1;
             _gameOver = false;
             _speed = 150;
-            Console.Clear();
+            try
+            {
+                Console.Clear();
+            }
+            catch (IOException)
+            {
+                // Ignore console clear errors in environments where it's not supported.
+            }
         }
 
         private void HandleInput()
         {
-            if (Console.KeyAvailable)
+            try
             {
-                var key = Console.ReadKey(true).Key;
-                if ((key == ConsoleKey.UpArrow || key == ConsoleKey.W) && _snake.Direction != Direction.Down)
-                    _snake.Direction = Direction.Up;
-                else if ((key == ConsoleKey.DownArrow || key == ConsoleKey.S) && _snake.Direction != Direction.Up)
-                    _snake.Direction = Direction.Down;
-                else if ((key == ConsoleKey.LeftArrow || key == ConsoleKey.A) && _snake.Direction != Direction.Right)
-                    _snake.Direction = Direction.Left;
-                else if ((key == ConsoleKey.RightArrow || key == ConsoleKey.D) && _snake.Direction != Direction.Left)
-                    _snake.Direction = Direction.Right;
+                while (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey(true).Key;
+                    if ((key == ConsoleKey.UpArrow || key == ConsoleKey.W) && _snake.Direction != Direction.Down)
+                        _snake.Direction = Direction.Up;
+                    else if ((key == ConsoleKey.DownArrow || key == ConsoleKey.S) && _snake.Direction != Direction.Up)
+                        _snake.Direction = Direction.Down;
+                    else if ((key == ConsoleKey.LeftArrow || key == ConsoleKey.A) && _snake.Direction != Direction.Right)
+                        _snake.Direction = Direction.Left;
+                    else if ((key == ConsoleKey.RightArrow || key == ConsoleKey.D) && _snake.Direction != Direction.Left)
+                        _snake.Direction = Direction.Right;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Console.KeyAvailable may throw when running in a non-interactive environment.
             }
         }
 
@@ -108,7 +125,14 @@ namespace SnakeGame
 
         private void Draw()
         {
-            Console.SetCursorPosition(0, 0);
+            try
+            {
+                Console.SetCursorPosition(0, 0);
+            }
+            catch (IOException)
+            {
+                // Ignore console errors in environments where it's not supported.
+            }
             Console.WriteLine($"Score: {_score}  High Score: {_highScore}  Level: {_level}");
 
             for (int y = 0; y <= _height; y++)
@@ -158,14 +182,29 @@ namespace SnakeGame
             {
                 _highScore = _score;
             }
-            Console.Clear();
-            Console.SetCursorPosition(_width / 2 - 5, _height / 2);
-            Console.WriteLine("Game Over");
-            Console.SetCursorPosition(_width / 2 - 12, _height / 2 + 1);
-            Console.WriteLine($"Your Score: {_score}, High Score: {_highScore}");
-            Console.SetCursorPosition(_width / 2 - 10, _height / 2 + 2);
-            Console.WriteLine("Press any key to play again");
-            Console.ReadKey();
+            try
+            {
+                Console.Clear();
+            }
+            catch (IOException)
+            {
+                // Ignore console clear errors in environments where it's not supported.
+            }
+
+            try
+            {
+                Console.SetCursorPosition(_width / 2 - 5, _height / 2);
+                Console.WriteLine("Game Over");
+                Console.SetCursorPosition(_width / 2 - 12, _height / 2 + 1);
+                Console.WriteLine($"Your Score: {_score}, High Score: {_highScore}");
+                Console.SetCursorPosition(_width / 2 - 10, _height / 2 + 2);
+                Console.WriteLine("Press any key to play again");
+                Console.ReadKey();
+            }
+            catch (IOException)
+            {
+                // Ignore console errors in environments where it's not supported.
+            }
         }
     }
 }
