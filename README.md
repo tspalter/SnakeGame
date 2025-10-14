@@ -1,37 +1,35 @@
 # Snake Game
 
-## Description
-A terminal-based implementation of the classic Snake game, written in Python.
+A terminal-based version of the classic Snake game.
 
-## Setup and Installation
+## How to Play
+
+- Use the **arrow keys** or **WSAD** keys to control the snake.
+- The goal is to eat the food (`F`) that appears on the screen.
+- Each time the snake eats food, it grows longer and you score 10 points.
+- The game is over if the snake runs into the walls or into itself.
+- If you fill the entire board with the snake, you advance to the next level where the snake moves faster.
+
+## Build and Run
+
+### Prerequisites
+
+- [.NET SDK](https://dotnet.microsoft.com/download)
+
+### Instructions
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd snake-game
+    git clone https://github.com/your-username/SnakeGame.git
+    cd SnakeGame
     ```
 
-2.  **Create a virtual environment and install dependencies:**
-    This project uses `uv` for environment management.
+2.  **Build the project:**
     ```bash
-    uv init
-    uv sync
+    dotnet build
     ```
 
-## How to Run
-To start the game, run the following command from the project's root directory:
-```bash
-uv run python snake_game.py
-```
-
-## How to Play
--   Use the **Arrow Keys** or **W/A/S/D** keys to move the snake.
--   **W** or **Up Arrow**: Move Up
--   **S** or **Down Arrow**: Move Down
--   **A** or **Left Arrow**: Move Left
--   **D** or **Right Arrow**: Move Right
--   The goal is to eat the food (`@`) that appears on the screen.
--   Each piece of food eaten increases your score by 10 points and makes the snake longer.
--   The game ends if the snake runs into the wall or into itself.
--   Press any key to play again after a game over.
--   Press `Esc` to quit the game at any time.
+3.  **Run the game:**
+    ```bash
+    dotnet run
+    ```
