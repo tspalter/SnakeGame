@@ -1,35 +1,41 @@
 # Snake Game
 
-A terminal-based version of the classic Snake game.
+A terminal-based snake game built with C++ and PDCurses.
 
 ## How to Play
 
-- Use the **arrow keys** or **WSAD** keys to control the snake.
-- The goal is to eat the food (`F`) that appears on the screen.
-- Each time the snake eats food, it grows longer and you score 10 points.
-- The game is over if the snake runs into the walls or into itself.
-- If you fill the entire board with the snake, you advance to the next level where the snake moves faster.
+- Use the arrow keys or WASD to control the snake.
+- Eat the food (*) to grow and increase your score.
+- Avoid running into the walls or the snake's own body.
 
-## Build and Run
+## Build and Run Instructions
 
 ### Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download)
+- C++ Compiler (G++ recommended)
+- CMake
+- PDCurses
 
-### Instructions
+### Build
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/SnakeGame.git
-    cd SnakeGame
+1.  Create a `build` directory:
+    ```
+    mkdir build
+    cd build
+    ```
+2.  Run CMake to generate the build files. You will need to provide the path to your PDCurses installation.
+    ```
+    cmake -DPDCURSES_DIR=/path/to/pdcurses ..
+    ```
+3.  Compile the project:
+    ```
+    cmake --build .
     ```
 
-2.  **Build the project:**
-    ```bash
-    dotnet build
-    ```
+### Run
 
-3.  **Run the game:**
-    ```bash
-    dotnet run
-    ```
+After a successful build, the executable will be located in the `build/Debug` directory.
+
+```
+./build/Debug/snake_game
+```
